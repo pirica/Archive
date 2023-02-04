@@ -82,16 +82,19 @@ for package in chain['dynamicKeys']:
 # NOTE: Defining the splash and release date, and also generating the scale-able files for the mark-down file
 # NOTE: {
 
-splash = splash_module.get_splash(parsed['version'])
+try:
+    splash = splash_module.get_splash(parsed['version'])
 
-# The release data in the datetime object, used to convert
-release_datetime = datetime.today()
+    # The release data in the datetime object, used to convert
+    release_datetime = datetime.today()
 
-# The date that the update came out
-updated_at = release_datetime.strftime("%B %d, %Y").replace(str(release_datetime.day), ordinal(release_datetime.day), 1).replace('September', 'Sept').replace('October', 'Oct').replace('August', 'Aug').replace('January', 'Jan').replace('February', 'Feb').replace('December', 'Dec').replace('November', 'Nov')
+    # The date that the update came out
+    updated_at = release_datetime.strftime("%B %d, %Y").replace(str(release_datetime.day) if not str(release_datetime.day).startswith('0') else str(release_datetime.day).replace('0', ''), ordinal(release_datetime.day), 1).replace('September', 'Sept').replace('October', 'Oct').replace('August', 'Aug').replace('January', 'Jan').replace('February', 'Feb').replace('December', 'Dec').replace('November', 'Nov')
 
-# Generate the scale-able file
-scaleable_generator.generate(open('./source/dependents/templates/source.svg', 'r').read(), parsed, splash, updated_at)
+    # Generate the scale-able file
+    scaleable_generator.generate(open('./source/dependents/templates/source.svg', 'r').read(), parsed, splash, updated_at)
+except:
+    print('Failed to add splash')
 
 # | Variables defined: splash, release_datetime, day, updated_at
 # NOTE: }
@@ -107,7 +110,7 @@ for manifest in manifests:
         continue
 
     added_manifests.append(manifest)
-    manifest_readme_string += '| {0} | {2} | [{1}](https://github.com/Tectors/Archive/blob/master/manifests/{1}.manifest) |\n'.format(manifest['labelName'], manifest['name'].replace('.manifest', ''), manifest['hash'])
+    manifest_readme_string += '| *{0}* | {2} | [{1}](https://github.com/Tectors/Archive/blob/master/manifests/{1}.manifest) |\n'.format(manifest['labelName'], manifest['name'].replace('.manifest', ''), manifest['hash'])
 
 # | Variables defined: manifests
 # NOTE: }
@@ -117,20 +120,20 @@ for manifest in manifests:
 # This adds in the thumbnail (scale-able file) into the mark-down file
 markdown_content = f'<div style="pointer-events: none">\n  <img style="pointer-events: none" src="https://raw.githubusercontent.com/Tectors/Archive/master/source/dependents/gen.{parsed["version"]}.svg" width="360" height="155">\n<div>\n\n >  \n  \n  > ++Fortnite+Release-23.30-CL-23901854-Android\n'
 
-# NOTE: Here we get the playlists and get the ones
-playlists = get('https://fortnite-api.com/v1/playlists').json()['data']
+# # NOTE: Here we get the playlists and get the ones
+# playlists = get('https://fortnite-api.com/v1/playlists').json()['data']
 
-# ONLY: The ones with a image and are the default ltms
-filtered_playlist = [playlist for playlist in playlists if playlist['isDefault'] and not playlist['isTournament'] and not playlist['isLimitedTimeMode'] and '_FFA' not in playlist['id'] and playlist['images']['showcase']]
-filtered_playlist = [filtered_playlist[0], filtered_playlist[2], filtered_playlist[-1], filtered_playlist[1]]
+# # ONLY: The ones with a image and are the default ltms
+# filtered_playlist = [playlist for playlist in playlists if playlist['isDefault'] and not playlist['isTournament'] and not playlist['isLimitedTimeMode'] and '_FFA' not in playlist['id'] and playlist['images']['showcase']]
+# filtered_playlist = [filtered_playlist[0], filtered_playlist[2], filtered_playlist[-1], filtered_playlist[1]]
 
-# NOTE: Categorize playlists to show the images of the season, by using a open-close button
-#markdown_content += f'\n<details>\n  <summary>Season Thumbnails</summary>\n\n  > Seasonal thumbnails are a season\'s normal ltms and their photos.\n\n  | Name | ID |\n  | - | - |\n'
+# # NOTE: Categorize playlists to show the images of the season, by using a open-close button
+# #markdown_content += f'\n<details>\n  <summary>Season Thumbnails</summary>\n\n  > Seasonal thumbnails are a season\'s normal ltms and their photos.\n\n  | Name | ID |\n  | - | - |\n'
 
-for playlist in filtered_playlist:
-    # Some variables we will need
-    showcase_img = playlist['images']['showcase']
-    image = 'https://raw.githubusercontent.com/Tectors/Archive/master/source/dependents/monthly-rotaton/' + save_image(get(showcase_img).content, showcase_img.split('/')[5] + '_' + parsed['version'].replace('.', '_') + '.png')
+# for playlist in filtered_playlist:
+#     # Some variables we will need
+#     showcase_img = playlist['images']['showcase']
+#     image = 'https://raw.githubusercontent.com/Tectors/Archive/master/source/dependents/monthly-rotaton/' + save_image(get(showcase_img).content, showcase_img.split('/')[5] + '_' + parsed['version'].replace('.', '_') + '.png')
 
     # Add it with a drop-down button
     #markdown_content += f'  | [{playlist["name"]}]({image}) | {playlist["id"]} |\n'
