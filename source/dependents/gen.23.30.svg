@@ -278,7 +278,6 @@
 
     <g xmlns="http://www.w3.org/2000/svg">
         <rect class="outliner"/>
-        <rect xmlns="http://www.w3.org/2000/svg" class="side-bar"/>
 
         <g xmlns="http://www.w3.org/2000/svg">
             <foreignObject xmlns="http://www.w3.org/2000/svg" x="23" y="26.5" width="318" height="176">
