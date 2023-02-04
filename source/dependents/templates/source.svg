@@ -48,38 +48,36 @@
     @keyframes ImageV2 {
         0% {
             position: absolute;
-            width: 381px;
-            height: 373px;
+            width: 0px;
+            height: 0px;
             border: 1px solid rgb(88 166 255);
-            border-radius: 0px;
+            border-radius: 6px;
             right: 0;
             overflow: hidden;
             transform: scale(1);
-            left: -37px;
-            top: -15px;
+            left: 154px;
+            top: 10px;
 
         }
         14% {
             position: absolute;
-            width: 381px;
-            height: 373px;
+            width: 0px;
+            height: 0px;
             border: 1px solid rgb(88 166 255);
-            border-radius: 0px;
+            border-radius: 6px;
             right: 0;
             overflow: hidden;
             transform: scale(1);
-            left: -37px;
-            top: -15px; 
+            left: 154px;
+            top: 10px;
         }
         50% {
-            height: 10px;
             top: 55px;
             border-radius: 1px;
-
         }
         to {
             position: absolute;
-            width: 100px;
+            width: 172px;
             height: 100px;
             border: 1px solid rgb(88 166 255);
             border-radius: 6px;
@@ -95,21 +93,21 @@
     @keyframes ImageV3 {
         0% {
             position: absolute;
-            top: 45%;
+            top: 35%;
             bottom: 0;
-            left: -79%;
+            left: -3%;
             right: 0;
             margin: auto;
-            width: 258%;
+            width: 141%;
         }
         14% {
             position: absolute;
-            top: 45%;
+            top: 35%;
             bottom: 0;
-            left: -79%;
+            left: -3%;
             right: 0;
             margin: auto;
-            width: 258%;
+            width: 141%;
         }
         50% {
         }
@@ -117,10 +115,10 @@
             position: absolute;
             top: 35%;
             bottom: 0;
-            left: -79%;
+            left: -3%;
             right: 0;
             margin: auto;
-            width: 258%;
+            width: 141%;
         }
     }
 
@@ -193,7 +191,7 @@
 
     .image {
         position: absolute;
-        width: 100px;
+        width: 172px;
         height: 100px;
         border: 1px solid rgb(88 166 255);
         border-radius: 6px;
@@ -209,10 +207,10 @@
         position: absolute;
         top: 35%;
         bottom: 0;
-        left: -79%;
+        left: -3%;
         right: 0;
         margin: auto;
-        width: 258%;
+        width: 141%;
         animation: 2s 1 alternate ImageV3;
     }
 
