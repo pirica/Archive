@@ -54,7 +54,7 @@
             border-radius: 6px;
             right: 0;
             overflow: hidden;
-            transform: scale(1);
+            transform: rotate(-50deg);
             left: 154px;
             top: 10px;
 
@@ -64,16 +64,17 @@
             width: 0px;
             height: 0px;
             border: 1px solid rgb(88 166 255);
-            border-radius: 6px;
+            border-radius: 0px;
             right: 0;
             overflow: hidden;
-            transform: scale(1);
+            transform: rotate(-30deg);
             left: 154px;
             top: 10px;
         }
         50% {
-            top: 55px;
+            top: 31px;
             border-radius: 1px;
+            transform: rotate(0deg);
         }
         to {
             position: absolute;
@@ -90,6 +91,17 @@
         }
     }
 
+    @keyframes TitleAnimation {
+        0% {
+            left: 30px;
+            opacity: 0;
+        }
+        50% {
+            right: 0px;
+            opacity: 1;
+        }
+    }
+
     @keyframes ImageV3 {
         0% {
             position: absolute;
@@ -99,6 +111,8 @@
             right: 0;
             margin: auto;
             width: 141%;
+            transform: scale(1);
+
         }
         14% {
             position: absolute;
@@ -108,6 +122,8 @@
             right: 0;
             margin: auto;
             width: 141%;
+            transform: scale(1.5);
+
         }
         50% {
         }
@@ -136,6 +152,7 @@
         font-weight: 600;
         color: #c9d1d9;
         fill: rgb(36, 41, 46);
+        position: inherit;
     }
 
     .clickable {
@@ -225,7 +242,7 @@
         margin: 0;
         position: absolute;
         top: 0px;
-        left: 54px;
+        left: 58px;
         height: 16px;
         width: auto;
         display: flex;
