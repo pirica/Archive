@@ -38,7 +38,7 @@ from datetime import datetime
 
 # These will make writing mark-down files eaiser
 markdown_keys = ''
-manifest_readme_string = '## Manifests\n| Label | Hash | Route |\n| - | - | - |\n'
+manifest_readme_string = '## *Manifests*\n| Label | Hash | Route |\n| - | - | - |\n'
 
 drop_down = '<details>\n  <summary>{0}</summary>\n\n{1}</details>\n\n'
 
@@ -56,7 +56,7 @@ parsed = parse_build_version(mappings[0]["fileName"])
 dynamicKeys = []
 
 # NOTE: Since the dynamicKeys array doesn't include the main key, so we have to add it manually
-markdown_keys += f'> {chain["mainKey"]}\n\n'
+markdown_keys += f'> *{chain["mainKey"]}*\n\n'
 dynamicKeys.append(chain["mainKey"])
 
 for package in chain['dynamicKeys']:
@@ -75,7 +75,7 @@ for package in chain['dynamicKeys']:
     if pak_content.__len__() > 0:
         markdown_content += '\n'
 
-    markdown_keys += drop_down.format(package['name'], f'  > FortniteGame/Content/Paks/{package["name"]}\n\n  > {key}\n\n{markdown_content}')
+    markdown_keys += drop_down.format(package['name'], f' > \n    {key}\n\n{markdown_content}')
 
 # | Variables defined: dynamicKeys, parsed, chain
 # NOTE: }
@@ -115,7 +115,7 @@ for manifest in manifests:
 # NOTE: {
 
 # This adds in the thumbnail (scale-able file) into the mark-down file
-markdown_content = f'<div style="pointer-events: none">\n  <img style="pointer-events: none" src="https://raw.githubusercontent.com/Tectors/Archive/master/source/dependents/gen.{parsed["version"]}.svg" width="360" height="155">\n<div>' + f'\n\n## Statistics\n> *{mappings[0]["fileName"].split("_")[0]}*\n\n> {datetime.now()} | {updated_at}\n'
+markdown_content = f'<div style="pointer-events: none">\n  <img style="pointer-events: none" src="https://raw.githubusercontent.com/Tectors/Archive/master/source/dependents/gen.{parsed["version"]}.svg" width="360" height="155">\n<div>\n\n >  \n  \n  > ++Fortnite+Release-23.30-CL-23901854-Android\n'
 
 # NOTE: Here we get the playlists and get the ones
 playlists = get('https://fortnite-api.com/v1/playlists').json()['data']
@@ -125,7 +125,7 @@ filtered_playlist = [playlist for playlist in playlists if playlist['isDefault']
 filtered_playlist = [filtered_playlist[0], filtered_playlist[2], filtered_playlist[-1], filtered_playlist[1]]
 
 # NOTE: Categorize playlists to show the images of the season, by using a open-close button
-markdown_content += f'\n<details>\n  <summary>Season Thumbnails</summary>\n\n  > Seasonal thumbnails are a season\'s normal ltms and their photos.\n\n  | Name | ID |\n  | - | - |\n'
+#markdown_content += f'\n<details>\n  <summary>Season Thumbnails</summary>\n\n  > Seasonal thumbnails are a season\'s normal ltms and their photos.\n\n  | Name | ID |\n  | - | - |\n'
 
 for playlist in filtered_playlist:
     # Some variables we will need
@@ -133,9 +133,9 @@ for playlist in filtered_playlist:
     image = 'https://raw.githubusercontent.com/Tectors/Archive/master/source/dependents/monthly-rotaton/' + save_image(get(showcase_img).content, showcase_img.split('/')[5] + '_' + parsed['version'].replace('.', '_') + '.png')
 
     # Add it with a drop-down button
-    markdown_content += f'  | [{playlist["name"]}]({image}) | {playlist["id"]} |\n'
+    #markdown_content += f'  | [{playlist["name"]}]({image}) | {playlist["id"]} |\n'
 
-markdown_content += '</details>\n\n' + manifest_readme_string + '\n---\n\n' + markdown_keys
+markdown_content += '\n' + manifest_readme_string + '\n---\n\n' + markdown_keys
 
 # NOTE: }
 # NOTE: Writing the file and we will be complete
