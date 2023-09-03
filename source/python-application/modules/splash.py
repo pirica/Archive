@@ -5,10 +5,9 @@ import base64
 
 # Gets the splash for the game
 def get_splash(version, type="mobileBgImg"):
-    # The endpoint
-    endpoint = 'https://www.epicgames.com/fortnite/en-US/api/cms/home'
-    # Request the api with the id and type
-    #buffer = get(get(endpoint).json()['carousel']['slides'][0]['background']['desktopImage']).content
-    buffer = get('https://cdn2.unrealengine.com/26br-keyart-noshadow-1920x1080-3358aa3ee425.jpg').content
+    # NOTE: Expected to fail again in the future
+    endpoint = 'https://www.fortnite.com/?_data=routes%2F_index'
+    buffer = get(get(endpoint).json()['hero'][0]['backgroundImage']).content
+    
     # Encode and return it
     return 'data:image/png;base64,' + str(base64.b64encode(buffer)).split('\'')[1].split('\'')[0]
